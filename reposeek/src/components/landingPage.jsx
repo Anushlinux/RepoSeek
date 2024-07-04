@@ -1,5 +1,7 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
+import { motion } from "framer-motion";
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
+import { LampContainer } from '../components/lamp'
 import {
   Bars3Icon,
   CalendarIcon,
@@ -11,14 +13,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
-const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-]
+
 const teams = [
   { id: 1, name: 'Session - 1', href: '#', initial: '1', current: false },
   { id: 2, name: 'Session - 2', href: '#', initial: '2', current: false },
@@ -33,15 +28,7 @@ export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
+    <div>
       <div>
         <Transition show={sidebarOpen}>
           <Dialog
@@ -102,26 +89,6 @@ export default function Example() {
                     </div>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                        {/* <li>
-                          <ul role="list" className="-mx-2 space-y-1">
-                            {navigation.map((item) => (
-                              <li key={item.name}>
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    item.current
-                                      ? 'bg-gray-800 text-white'
-                                      : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                  )}
-                                >
-                                  <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
-                                  {item.name}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </li> */}
                         <li>
                           <div className="text-xs font-semibold mt-12 leading-6 text-gray-400">
                             Your sessions
@@ -170,12 +137,12 @@ export default function Example() {
 
             <nav className="flex flex-1 mt-12 flex-col">
               <ul role="list" className="flex flex-1 flex-col ">
-                <li>
+                <li className="">
                   <div className=" w-full border-b border-dashed"></div>
-                  <div className="text-xs font-semibold leading-6 mt-6 text-gray-400">
+                  <div className="text-xl my-4 mx-4 font-semibold leading-6 mt-6 text-gray-400">
                     Your sessions
                   </div>
-                  <ul role="list" className="-mx-2 mt-2 space-y-1">
+                  <ul role="list" className="mx-2 mt-2 space-y-1">
                     {teams.map((team) => (
                       <li key={team.name}>
                         <a
@@ -240,9 +207,24 @@ export default function Example() {
         </div>
 
         <main className="py-10 lg:pl-72">
-          <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+          <div className="px-4 sm:px-6 lg:px-8">
+            <LampContainer>
+              <motion.h1
+                initial={{ opacity: 0.5, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.3,
+                  duration: 0.8,
+                  ease: "easeInOut",
+                }}
+                className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+              >
+                Build lamps <br /> the right way
+              </motion.h1>
+            </LampContainer>
+          </div>
         </main>
       </div>
-    </>
+    </div>
   );
 }
