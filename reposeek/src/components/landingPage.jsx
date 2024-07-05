@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from "framer-motion";
 import React from "react";
 import { AuroraBackground } from "../components/aurora-bg";
+import { FlipWords } from "../components/flip-words";
 
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react'
 
@@ -29,15 +30,13 @@ function classNames(...classes) {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const words = ["website", "lib", "model", "service", "app", "api", "server", "client", "database", "framework", "library", "tool", "platform", "system", "interface", "network", "protocol", "algorithm", "data", "object", "function", "variable", "constant", "class", "module",];
 
   return (
     <div>
       <div>
         <Transition show={sidebarOpen}>
-          <Dialog
-            className="relative border-2 border-red-600 z-50 lg:hidden"
-            onClose={setSidebarOpen}
-          >
+          <Dialog className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
             <TransitionChild
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
@@ -127,12 +126,9 @@ export default function Example() {
         </Transition>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden border-r border-gray-700  lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+        <div className="hidden border-r border-dashed border-gray-400  lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div
-            className="flex grow flex-col gap-y-5 bg-transparent overflow-y-auto px-6"
-            
-          >
+          <div className="flex grow flex-col gap-y-5 bg-transparent overflow-y-auto px-6">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -174,15 +170,17 @@ export default function Example() {
                   <div className="my-1  mt-auto border-b border-dashed"></div>
                   <a
                     href="#"
-                    className="flex items-center -mx-6  gap-x-4 px-16 py-10 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
+                    className="flex items-center -mx-6 gap-x-4 px-12 py-10 text-sm font-semibold leading-6 text-white hover:bg-gray-900"
                   >
                     <img
-                      className="h-16 w-16   bg-gray-800"
+                      className="h-16 w-16 bg-gray-800"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Tom Cook</span>
+                    <span aria-hidden="true" className="px-4 text-lg">
+                      Tom Cook
+                    </span>
                   </a>
                 </li>
               </ul>
@@ -212,8 +210,8 @@ export default function Example() {
           </a>
         </div>
 
-        <main className=" ">
-          <div className="  ">
+        <main>
+          <div>
             <AuroraBackground>
               <motion.div
                 initial={{ opacity: 0.0, y: 40 }}
@@ -223,15 +221,22 @@ export default function Example() {
                   duration: 0.8,
                   ease: "easeInOut",
                 }}
-                className="relative flex flex-col gap-4 items-center justify-center px-4"
+                className="relative flex flex-col gap-4 justify-items-start align-baseline px-10"
+                style={{ height: "81vh", marginRight: "20vw" }}
               >
-                <div className="text-3xl md:text-7xl font-bold dark:text-white text-center"></div>
-                <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
-                  And this, is chemical burn.
+                <div className="">
+                  <div className="text-3xl  md:text-7xl font-bold dark:text-white text-start">
+                    hello XYZ
+                  </div>
+                  <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
+                    what you cookin today?
+                  </div>
+                  <FlipWords
+                    className="font-extralight text-base md:text-4xl dark:text-neutral-200 -px-1 -py-4"
+                    words={words}
+                  />
+                  <br />
                 </div>
-                <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
-                  Debug now
-                </button>
               </motion.div>
             </AuroraBackground>
           </div>
