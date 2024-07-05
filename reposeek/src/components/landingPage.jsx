@@ -173,12 +173,12 @@ export default function Example() {
                     className="flex items-center -mx-6 gap-x-4 px-12 py-10 text-sm font-semibold leading-6 text-white hover:bg-gray-900"
                   >
                     <img
-                      className="h-16 w-16 bg-gray-800"
+                      className="h-16 rounded-lg w-16 bg-gray-800"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true" className="px-4 text-lg">
+                    <span aria-hidden="true" className="px-4  text-lg">
                       Tom Cook
                     </span>
                   </a>
@@ -225,10 +225,17 @@ export default function Example() {
                 style={{ height: "81vh", marginRight: "20vw" }}
               >
                 <div className="">
-                  <div className="text-3xl  md:text-7xl font-bold dark:text-white text-start">
-                    hello XYZ
+                  <div className="text-lg  md:text-7xl font-semibold dark:text-white text-start">
+                    Hello, user
                   </div>
-                  <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
+                  <div
+                    className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4"
+                    style={{
+                      background: "linear-gradient(to right, grey, red)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     what you cookin today?
                   </div>
                   <FlipWords
