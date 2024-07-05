@@ -129,7 +129,10 @@ export default function Example() {
         {/* Static sidebar for desktop */}
         <div className="hidden border-r border-gray-700  lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 bg-transparent overflow-y-auto px-6">
+          <div
+            className="flex grow flex-col gap-y-5 bg-transparent overflow-y-auto px-6"
+            
+          >
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -174,7 +177,7 @@ export default function Example() {
                     className="flex items-center -mx-6  gap-x-4 px-16 py-10 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
                   >
                     <img
-                      className="h-10 w-10   bg-gray-800"
+                      className="h-16 w-16   bg-gray-800"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
                     />
@@ -222,9 +225,7 @@ export default function Example() {
                 }}
                 className="relative flex flex-col gap-4 items-center justify-center px-4"
               >
-                <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
-                  
-                </div>
+                <div className="text-3xl md:text-7xl font-bold dark:text-white text-center"></div>
                 <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
                   And this, is chemical burn.
                 </div>
