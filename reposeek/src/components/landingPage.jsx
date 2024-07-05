@@ -127,9 +127,9 @@ export default function Example() {
         </Transition>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+        <div className="hidden border-r border-gray-700  lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-black px-6">
+          <div className="flex grow flex-col gap-y-5 bg-transparent overflow-y-auto px-6">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -141,7 +141,7 @@ export default function Example() {
             <nav className="flex flex-1 mt-12 flex-col">
               <ul role="list" className="flex flex-1 flex-col ">
                 <li className="">
-                  <div className=" w-full border-b border-dashed"></div>
+                  <div className=" w-full border-b border-white border-dashed"></div>
                   <div className="text-xl my-4 mx-4 font-semibold leading-6 mt-6 text-gray-400">
                     Your sessions
                   </div>
@@ -209,7 +209,7 @@ export default function Example() {
           </a>
         </div>
 
-        <main className=" lg:pl-60">
+        <main className=" ">
           <div className="  ">
             <AuroraBackground>
               <motion.div
@@ -223,7 +223,7 @@ export default function Example() {
                 className="relative flex flex-col gap-4 items-center justify-center px-4"
               >
                 <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
-                  Background lights are cool you know.
+                  
                 </div>
                 <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
                   And this, is chemical burn.
