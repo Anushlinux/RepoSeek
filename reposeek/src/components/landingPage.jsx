@@ -209,8 +209,8 @@ export default function Example() {
           </a>
         </div>
 
-        <main className=" lg:pl-72">
-          <div className="px-4 sm:px-6 lg:px-8">
+        <main className=" lg:pl-60">
+          <div className="  ">
             <AuroraBackground>
               <motion.div
                 initial={{ opacity: 0.0, y: 40 }}
