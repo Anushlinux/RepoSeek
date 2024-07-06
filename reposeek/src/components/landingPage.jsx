@@ -33,11 +33,14 @@ export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const words = ["website", "lib", "model", "service", "app", "api", "server", "client", "database", "framework", "library", "tool", "platform", "system", "interface", "network", "protocol", "algorithm", "data", "object", "function", "variable", "constant", "class", "module",];
   const placeholders = [
-    "What's the first rule of Fight Club?",
-    "Who is Tyler Durden?",
-    "Where is Andrew Laeddis Hiding?",
-    "Write a Javascript method to reverse a string",
-    "How to assemble your own PC?",
+    "Tell me whatcu makin",
+    "Come on, dont be shy",
+    "I'm all ears",
+    "I'm listening",
+    "I'm ready",
+    "I'm here",
+    "I'm waiting",
+
   ];
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -238,12 +241,12 @@ export default function Example() {
               }}
               className="flex flex-col gap-4 pt-20"
             >
-              <div>
-                <div className="text-lg sm:text-5xl md:text-7xl font-semibold dark:text-white text-start">
+              <div className='mx-14'>
+                <div className="text-lg sm:text-5xl  md:text-7xl font-semibold dark:text-white text-start">
                   Hello,
                   <span
                     style={{
-                      background: "linear-gradient(to right, grey, yellow)",
+                      background: "linear-gradient(to right, red, darkgrey)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                     }}
@@ -257,13 +260,13 @@ export default function Example() {
                   today?
                 </div>
                 <FlipWords
-                  className="font-extralight text-base md:text-4xl dark:text-neutral-200"
+                  className="font-extralight text-base -ml-1.5  md:text-4xl dark:text-neutral-200"
                   words={words}
                 />
               </div>
             </motion.div>
 
-            <div className="flex-grow flex mt-40 flex-col justify-center items-center">
+            <div className="flex-grow flex mt-80 flex-col justify-center items-center">
               {/* <h2 className="mb-10 text-xl text-center sm:text-5xl dark:text-white text-black">
                 Ask Aceternity UI Anything
               </h2> */}
