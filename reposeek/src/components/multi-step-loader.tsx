@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "../util/cn";
 import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 import { useState, useEffect } from "react";
 
 const CheckIcon = ({ className }: { className?: string }) => {
@@ -35,6 +36,25 @@ const CheckFilled = ({ className }: { className?: string }) => {
   );
 };
 
+// const WrongIcon = ({ className }: { className?: string }) => {
+//   return (
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       fill="none"
+//       viewBox="0 0 24 24"
+//       strokeWidth={1.5}
+//       stroke="currentColor"
+//       className={cn("w-6 h-6", className)}
+//     >
+//       <path
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//         d="M6 18L18 6M6 6l12 12"
+//       />
+//     </svg>
+//   );
+// };
+
 type LoadingState = {
   text: string;
 };
@@ -44,32 +64,32 @@ const LoaderCore = ({
   value = 0,
 }: {
   loadingStates: LoadingState[];
-  value?: number;
+  value?: number | string;
 }) => {
   return (
     <div className="flex relative justify-start max-w-xl mx-auto flex-col mt-40">
       {loadingStates.map((loadingState, index) => {
-        const distance = Math.abs(index - value);
-        const opacity = Math.max(1 - distance * 0.2, 0); // Minimum opacity is 0, keep it 0.2 if you're sane.
+        const distance = Math.abs(index - Number(value));
+        const opacity = Math.max(1 - distance * 0.2, 0);
 
         return (
           <motion.div
             key={index}
             className={cn("text-left flex gap-2 mb-4")}
-            initial={{ opacity: 0, y: -(value * 40) }}
-            animate={{ opacity: opacity, y: -(value * 40) }}
+            initial={{ opacity: 0, y: -(Number(value) * 40) }}
+            animate={{ opacity: opacity, y: -(Number(value) * 40) }}
             transition={{ duration: 0.5 }}
           >
             <div>
-              {index > value && (
+              {typeof value === 'number' && index > value && (
                 <CheckIcon className="text-black dark:text-white" />
               )}
-              {index <= value && (
+              {typeof value === 'number' && index <= value && (
                 <CheckFilled
                   className={cn(
                     "text-black dark:text-white",
-                    value === index &&
-                      "text-black dark:text-lime-500 opacity-100"
+                    value === index && loadingState.text !== "fuck now what?" && "text-black dark:text-lime-500 opacity-100",
+                    value === index && loadingState.text === "fuck now what?" && "text-black dark:text-red-500 opacity-100",
                   )}
                 />
               )}
@@ -77,7 +97,8 @@ const LoaderCore = ({
             <span
               className={cn(
                 "text-black dark:text-white",
-                value === index && "text-black dark:text-lime-500 opacity-100"
+                value === index && loadingState.text !== "fuck now what?" && "text-black dark:text-lime-500 opacity-100",
+                value === index && loadingState.text === "fuck now what?" && "text-black dark:text-red-500 opacity-100"
               )}
             >
               {loadingState.text}
@@ -88,11 +109,10 @@ const LoaderCore = ({
     </div>
   );
 };
-
 export const MultiStepLoader = ({
   loadingStates,
   loading,
-  duration = 2000,
+  duration = 1000,
   loop = false,
 }: {
   loadingStates: LoadingState[];
@@ -144,3 +164,5 @@ export const MultiStepLoader = ({
     </AnimatePresence>
   );
 };
+
+export default MultiStepLoader;

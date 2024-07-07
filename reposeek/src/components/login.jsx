@@ -16,13 +16,15 @@ const handleSubmit = (e) => {
 };
   return (
     <div className="flex justify-center items-center">
-        <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black dark:bg-opacity-40">
+        <div className="w-[100%] mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black dark:bg-opacity-50">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
             Welcome to Reposeek
         </h2>
         <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-            Login to aceternity if you can because we don&apos;t have a login flow
-            yet
+            Login through github for seamless experience 
+            <span className=" text-black opacity-50">
+                 (if you can't you should be ashamed of yourself)
+            </span>
         </p>
 
         <form className="my-8" onSubmit={handleSubmit}>
@@ -78,7 +80,7 @@ const handleSubmit = (e) => {
 const BottomGradient = () => {
   return (
     <>
-      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-white to-transparent" />
       <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
     </>
   );

@@ -51,10 +51,11 @@ const loadingStates = [
     text: "npm create",
   },
   {
-    text: "initial enthusiasm",
+    text: "initial enthusiasm", duration: 4000
   },
   {
     text: "fuck now what?",
+    
   },
   {
     text: "Welcome to reposeek",
@@ -251,7 +252,7 @@ export default function Example() {
           </div>
         </div>
 
-        <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+        <div className="sticky top-0 z-40 flex items-center gap-x-6 bg-transparent px-4 py-4 shadow-sm sm:px-6 lg:hidden">
           <button
             type="button"
             className="-m-2.5 p-2.5 text-gray-400 lg:hidden"

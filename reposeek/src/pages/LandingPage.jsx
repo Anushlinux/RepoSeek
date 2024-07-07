@@ -62,7 +62,7 @@ const Main = () => {
     return (
       <div className="min-h-screen relative lg:pl-72">
         <AuroraBackground className="absolute inset-0 z-0" />
-        <div className="relative z-10 flex flex-col min-h-screen justify-between px-20">
+        <div className="relative z-10 flex  flex-col min-h-screen justify-between px-20">
           <motion.div
             initial={{ opacity: 0.0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -71,10 +71,10 @@ const Main = () => {
               duration: 0.8,
               ease: "easeInOut",
             }}
-            className="flex flex-col gap-4 pt-20"
+            className="flex flex-col gap-4 pt-20 "
           >
-            <div className="mx-14">
-              <div className="text-lg sm:text-5xl  md:text-7xl font-semibold dark:text-white text-start">
+            <div className=" lg:mx-14 ">
+              <div className="text-5xl sm:text-7xl  md:text-7xl font-semibold dark:text-white text-start">
                 Hello,
                 <span
                   style={{
@@ -86,13 +86,13 @@ const Main = () => {
                   user
                 </span>
               </div>
-              <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
+              <div className="font-extralight text-4xl md:text-4xl dark:text-neutral-200 py-4">
                 what you
-                <span className="font-serif"> cookin </span>
+                <span className="font-serif "> cookin </span>
                 today?
               </div>
               <FlipWords
-                className="font-extralight text-base -ml-2  md:text-4xl dark:text-neutral-200"
+                className="font-extralight text-4xl -ml-2  md:text-4xl dark:text-neutral-200"
                 words={words}
               />
             </div>
@@ -114,8 +114,8 @@ const Main = () => {
 export default function LandingPage() {
   return (
     <div>
-      <Main />
       <SideBar />
+      <Main />
     </div>
   );
 }
