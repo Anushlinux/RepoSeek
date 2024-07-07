@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "../util/cn";
+import React from "react";
 
 export function Placeholder({
   placeholders,
@@ -108,8 +109,8 @@ export function Placeholder({
     const animateFrame = (pos: number = 0) => {
       requestAnimationFrame(() => {
         const newArr = [];
-        for (let i = 0; i < newDataRef.current.length; i++) {
-          const current = newDataRef.current[i];
+        for (const element of newDataRef.current) {
+          const current = element;
           if (current.x < pos) {
             newArr.push(current);
           } else {
