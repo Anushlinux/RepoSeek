@@ -4,8 +4,7 @@ import { AuroraBackground } from "../components/aurora-bg";
 import { FlipWords } from "../components/flip-words";
 import { Placeholder } from "../components/placeholder";
 import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
-import { CanvasRevealEffect } from "../components/canvas-reel";
+
 
 import React, { useState } from "react";
 
