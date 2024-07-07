@@ -5,6 +5,16 @@ import { FlipWords } from "../components/flip-words";
 import { Placeholder } from "../components/placeholder";
 import { motion } from "framer-motion";
 
+import React, { useState } from "react";
+
+
+const handleChange = (e) => {
+  console.log(e.target.value);
+};
+const onSubmit = (e) => {
+  e.preventDefault();
+  console.log("submitted");
+};
 
 const Main = () => {
 
@@ -44,13 +54,8 @@ const Main = () => {
       "I'm here",
       "I'm waiting",
     ];
-    const handleChange = (e) => {
-      console.log(e.target.value);
-    };
-    const onSubmit = (e) => {
-      e.preventDefault();
-      console.log("submitted");
-    };
+    
+
 
     return (
       <div className="min-h-screen relative lg:pl-72">
@@ -85,16 +90,14 @@ const Main = () => {
                 today?
               </div>
               <FlipWords
-                className="font-extralight text-base -ml-1.5  md:text-4xl dark:text-neutral-200"
+                className="font-extralight text-base -ml-2  md:text-4xl dark:text-neutral-200"
                 words={words}
               />
             </div>
           </motion.div>
 
           <div className="flex-grow flex flex-col justify-end mb-16 items-center">
-            {/* <h2 className="mb-10 text-xl text-center sm:text-5xl dark:text-white text-black">
-                Ask Aceternity UI Anything
-              </h2> */}
+            
             <Placeholder
               placeholders={placeholders}
               onChange={handleChange}

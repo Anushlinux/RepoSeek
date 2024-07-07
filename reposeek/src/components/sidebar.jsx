@@ -6,6 +6,8 @@ import React from "react";
 // import { Placeholder } from "../components/placeholder";
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import { MultiStepLoader as Loader } from "../components/multi-step-loader";
+import { IconSquareRoundedX } from "@tabler/icons-react";
 
 import {
   Dialog,
@@ -35,51 +37,34 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const loadingStates = [
+  {
+    text: "Sudden urge to make a project",
+  },
+  {
+    text: "gets an idea",
+  },
+  {
+    text: "creates a repo",
+  },
+  {
+    text: "npm create",
+  },
+  {
+    text: "initial enthusiasm",
+  },
+  {
+    text: "fuck now what?",
+  },
+  {
+    text: "Welcome to reposeek",
+  },
+];
+
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const words = [
-    "website",
-    "lib",
-    "model",
-    "service",
-    "app",
-    "api",
-    "server",
-    "client",
-    "database",
-    "framework",
-    "library",
-    "tool",
-    "platform",
-    "system",
-    "interface",
-    "network",
-    "protocol",
-    "algorithm",
-    "data",
-    "object",
-    "function",
-    "variable",
-    "constant",
-    "class",
-    "module",
-  ];
-  const placeholders = [
-    "Tell me whatcu makin",
-    "Come on, dont be shy",
-    "I'm all ears",
-    "I'm listening",
-    "I'm ready",
-    "I'm here",
-    "I'm waiting",
-  ];
-  const handleChange = (e) => {
-    console.log(e.target.value);
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log("submitted");
-  };
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <div>
@@ -215,7 +200,36 @@ export default function Example() {
                   </ul>
                 </li>
 
-                <li className=" mt-auto">
+                <li className="mt-auto">
+                  <div className="flex justify-baseline ">
+                    {/* Core Loader Modal */}
+                    <Loader
+                      loadingStates={loadingStates}
+                      loading={loading}
+                      duration={2000}
+                    />
+
+                    {/* The buttons are for demo only, remove it in your actual code ⬇️ */}
+                    <button
+                        onClick={() => setLoading(true)}
+                        className="bg-transparent hover:bg-[grey]/60 text-white hover:text-black mx-auto text-sm md:text-base transition font-medium duration-200 h-10 mb-10 rounded-lg px-8 cursor-pointer"
+                        style={{
+                            boxShadow:
+                                "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
+                        }}
+                    >
+                        why am i here?
+                    </button>
+
+                    {loading && (
+                      <button
+                        className="fixed top-4 right-4 text-black dark:text-white z-[120]"
+                        onClick={() => setLoading(false)}
+                      >
+                        <IconSquareRoundedX className="h-10 w-10" />
+                      </button>
+                    )}
+                  </div>
                   <div className="my-1  mt-auto border-b border-dashed"></div>
                   <a
                     href="#"
