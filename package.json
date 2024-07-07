@@ -1,6 +1,11 @@
 {
   "dependencies": {
+    "@react-three/fiber": "^8.16.8",
     "@tabler/icons-react": "^3.9.0",
-    "react-router-dom": "^6.24.1"
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.13",
+    "react-router-dom": "^6.24.1",
+    "tailwind-merge": "^2.4.0",
+    "three": "^0.166.1"
   }
 }

@@ -218,7 +218,7 @@ export default function Example() {
                                 "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
                         }}
                     >
-                        why am i here?
+                        Why am I here?
                     </button>
 
                     {loading && (
