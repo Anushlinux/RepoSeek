@@ -266,7 +266,7 @@ export default function Example() {
               </div>
             </motion.div>
 
-            <div className="flex-grow flex mt-80 flex-col justify-center items-center">
+            <div className="flex-grow flex flex-col justify-end mb-16 items-center">
               {/* <h2 className="mb-10 text-xl text-center sm:text-5xl dark:text-white text-black">
                 Ask Aceternity UI Anything
               </h2> */}
