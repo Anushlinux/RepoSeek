@@ -3,7 +3,7 @@ import React from 'react'
 
 
 const Callback = () => {
-
+    
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     
@@ -13,7 +13,7 @@ const Callback = () => {
 
   return (
     <div>
-        {code }
+        {code}
     </div>
   )
 }
