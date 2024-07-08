@@ -6,8 +6,13 @@ import { cn } from "../util/cn";
 import {
   IconBrandGithub,
   IconBrandGoogle,
-  IconBrandOnlyfans,
 } from "@tabler/icons-react";
+
+const CLIENT_ID = "Ov23lil8Z6B45d2ZRNnL";
+
+function LoginGithub() {
+  window.location.assign ("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID);
+ }
 
 export function SignupFormDemo() {
 const handleSubmit = (e) => {
@@ -52,6 +57,7 @@ const handleSubmit = (e) => {
             <button
                 className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                 type="submit"
+                onClick={LoginGithub}
             >
                 <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
                 <span className="text-neutral-700 dark:text-neutral-300 text-sm">
