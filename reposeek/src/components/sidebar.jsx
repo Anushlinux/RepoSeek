@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 // import { motion } from "framer-motion";
 import React from "react";
 // import { AuroraBackground } from "../components/aurora-bg";
@@ -62,7 +64,11 @@ const loadingStates = [
   },
 ];
 
-export default function Example() {
+export default function Example({user}) {
+
+  
+  
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -238,12 +244,12 @@ export default function Example() {
                   >
                     <img
                       className="h-16 rounded-lg w-16 bg-gray-800"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src= {user.avatar_url}
                       alt=""
                     />
                     <span className="sr-only">Your profile</span>
                     <span aria-hidden="true" className="px-4  text-lg">
-                      Tom Cook
+                      {user.login}
                     </span>
                   </a>
                 </li>

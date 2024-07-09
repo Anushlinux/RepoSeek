@@ -5,7 +5,8 @@ import { FlipWords } from "../components/flip-words";
 import { Placeholder } from "../components/placeholder";
 import { motion } from "framer-motion";
 
-
+import { useEffect } from 'react';
+import axios from 'axios';
 import React, { useState } from "react";
 
 
@@ -18,7 +19,7 @@ const onSubmit = (e) => {
 };
 
 
-const Main = () => {
+const Main = ({user}) => {
 
     const words = [
       "website",
@@ -74,8 +75,8 @@ const Main = () => {
             className="flex flex-col gap-4 pt-20 "
           >
             <div className=" lg:mx-14 ">
-              <div className="text-5xl sm:text-7xl  md:text-7xl font-semibold dark:text-white text-start">
-                Hello,
+              <div className="text-5xl sm:text-7xl  md:text-6xl font-semibold dark:text-white text-start">
+                hello ,
                 <span
                   style={{
                     background: "linear-gradient(to right, red, darkgrey)",
@@ -83,7 +84,7 @@ const Main = () => {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  user
+                  {user.name.toLowerCase()}
                 </span>
               </div>
               <div className="font-extralight text-4xl md:text-4xl dark:text-neutral-200 py-4">
@@ -112,10 +113,29 @@ const Main = () => {
 }
 
 export default function LandingPage() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    axios
+      .get("https://api.github.com/user", {
+        headers: {
+          Authorization: `token ${localStorage.getItem("github-code")}`,
+        },
+      })
+      .then((response) => {
+
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.error("Error getting starred repos:", error);
+      });
+  }, []);
+
+  console.log(user);
   return (
     <div>
-      <SideBar />
-      <Main />
+      <SideBar  user ={user}/>
+      <Main user={user} />
     </div>
   );
 }
