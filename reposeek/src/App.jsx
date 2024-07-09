@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
-// import Callback from './pages/Callback';
+import Callback from './pages/Callback';
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/api/github/callback" element={<Callback />} /> */}
+        <Route path="/api/github/callback" element={<Callback />} />
         <Route path="*" element={<h1>404 Page not found</h1>} />
       </Routes>
     </Router>
