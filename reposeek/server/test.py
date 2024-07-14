@@ -11,7 +11,7 @@ if GOOGLE_API_KEY is None:
     raise ValueError("No GOOGLE_API_KEY found in environment variables")
 genai.configure(api_key=GOOGLE_API_KEY)
 
-PROMPT = """you are a helper you will be provided a need and you have to search through the data of the starred repos of users and you have to provide the best solution they can use."""
+
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -30,7 +30,9 @@ def upload_file():
                     display_name="Starred Repos Content",
                     mime_type="text/markdown"
                 )
-                PROMPT2 = f"These are my starred repos tell me the best repos I should use for {keywords}"
+                PROMPT="""you are a helper you will be provided a need and you have to search through the data of the starred repos of users and you have to provide the best solution they can use.
+                """
+                PROMPT2 = f"""These are my starred repos tell me the best repos I should use for {keywords} """
                 model = genai.GenerativeModel(model_name="models/gemini-1.5-pro",
                                               generation_config={"response_mime_type": "application/json"},
                                               system_instruction=PROMPT)
@@ -50,4 +52,4 @@ def upload_file():
             return jsonify({'error': 'No file provided'}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
