@@ -1,9 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";z
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "../util/cn";
 import React from "react";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 
 export function Placeholder({
   placeholders,
@@ -15,6 +17,8 @@ export function Placeholder({
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+  const { register, watch } = useForm();
+  const value = watch("query");
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const startAnimation = () => {
@@ -46,7 +50,9 @@ export function Placeholder({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const newDataRef = useRef<any[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
+  const [keywords, setKeywords] = useState("");
+  const [result, setResult] = useState("");
   const [animating, setAnimating] = useState(false);
 
   const draw = useCallback(() => {

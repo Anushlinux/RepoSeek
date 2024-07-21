@@ -26,9 +26,9 @@ const handleSubmit = (e) => {
             Welcome to Reposeek
         </h2>
         <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-            Login through github for seamless experience 
+            Login through github for seamless experience {" "} 
             <span className=" text-black opacity-50">
-                 (if you can't you should be ashamed of yourself)
+                 if you can't you should be ashamed of yourself
             </span>
         </p>
 

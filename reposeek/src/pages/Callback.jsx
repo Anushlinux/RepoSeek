@@ -7,7 +7,7 @@ function Callback() {
     const code = urlParams.get("code");
     if (code) {
       axios
-        .post("http://localhost:5000/auth/github/callback", {
+        .post("http://localhost:8000/auth/github/callback", {
           code,
         })
         .then((response) => {
