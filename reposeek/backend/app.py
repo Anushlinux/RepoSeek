@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2
 from fastapi.openapi.docs import get_swagger_ui_html
 from pydantic import BaseModel
 from typing import Optional
-import requests
+import requestsz
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -20,9 +20,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-GITHUB_CLIENT_ID = "Ov23lil8Z6B45d2ZRNnL"
-GITHUB_CLIENT_SECRET = "e3c48b5342702425f66f0eb7adb5581bbbb8f9c4"
-GOOGLE_API_KEY = "AIzaSyCckBrioAA_1hxxBktEodvDW6PaRQt0Qq8"
+# GITHUB_CLIENT_ID = "Ov23lil8Z6B45d2ZRNnL"
+# GITHUB_CLIENT_SECRET = "e3c48b5342702425f66f0eb7adb5581bbbb8f9c4"
+# GOOGLE_API_KEY = "AIzaSyCckBrioAA_1hxxBktEodvDW6PaRQt0Qq8"
 class CodePayload(BaseModel):
     code: str
 
