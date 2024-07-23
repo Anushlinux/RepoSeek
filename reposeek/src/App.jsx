@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
 import Callback from './pages/Callback';
@@ -10,6 +10,12 @@ import {
 } from "react-router-dom";
 
 import './App.css'
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+};
 
 
 
