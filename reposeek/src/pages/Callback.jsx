@@ -12,6 +12,7 @@ function Callback() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
+    console.log(`Authorization code: ${code}`);
     if (code) {
       axios
         .post(
