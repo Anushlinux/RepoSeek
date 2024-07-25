@@ -83,59 +83,40 @@ const Main = ({ user }) => {
     }
     const fetchData = async () => {
       try {
-        axios
-          .get("https://api.github.com/user/starred", {
+        const githubResponse = await axios.get(
+          "https://api.github.com/user/starred",
+          {
             headers: {
               Authorization: `token ${accessToken}`,
             },
-          })
-          .then((response) => {
-            const newRepos = extractRepoInfo(response.data);
-            setNewRepos(newRepos);
-            console.log(JSON.stringify(newRepos));
-          })
-          .catch((error) => {
-            console.error("Error getting starred repos:", error);
-          });
+          }
+        );
+        const newRepos = extractRepoInfo(githubResponse.data);
+        setNewRepos(newRepos);
+        console.log(JSON.stringify(newRepos));
+
+        const geminiResponse = await axios.post(
+          "http://localhost:5000/gemini",
+          {
+            text: newRepos,
+            keywords: "repos related to python",
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        const curatedRepos = geminiResponse.data.curated_repos;
+        console.log(JSON.stringify(curatedRepos));
       } catch (error) {
         console.error("Error getting starred repos:", error);
       }
     };
     fetchData();
   }, []);
-  useEffect(() => {
-    console.log(newRepos);
-    const getInfo = async () => {
-      try {
-        axios
-          .post(
-            "http://localhost:5000/gemini",
-            {
-              text: JSON.stringify(newRepos),
-              keywords: "repos related to python",
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              withCredentials: true,
-            }
-          )
-          .then((response) => {
-            const curatedRepos = response.data.curated_repos;
-            console.log(JSON.stringify(curatedRepos));
-            console.log(response.data);
-            
-          })
-          .catch((error) => {
-            console.error("Error in gemini repos:", error);
-          });
-      } catch (error) {
-        console.error("Error getting starred repos:", error);
-      }
-    };
-    getInfo();
-  }, []);
+
   return (
     <div className="min-h-screen relative lg:pl-72">
       <AuroraBackground className="absolute inset-0 z-0" />
