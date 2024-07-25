@@ -8,7 +8,21 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import axios from "axios";
 import React, { useState } from "react";
+function extractRepoInfo(repos) {
+  return repos.map((repo) => ({
+    name: repo.name,
 
+    description: repo.description,
+
+    fullName: repo.full_name,
+
+    language: repo.language,
+
+    url: repo.html_url,
+
+    stargazersCount: repo.stargazers_count,
+  }));
+}
 const handleChange = (e) => {
   console.log(e.target.value);
 };
@@ -60,6 +74,7 @@ const Main = ({ user }) => {
     "I'm here",
     "I'm waiting",
   ];
+  const [newRepos, setNewRepos] = useState([]);
   useEffect(() => {
     const accessToken = getCookie("accessToken");
     console.log(accessToken);
@@ -75,7 +90,9 @@ const Main = ({ user }) => {
             },
           })
           .then((response) => {
-            console.log(response.data);
+            const newRepos = extractRepoInfo(response.data);
+            setNewRepos(newRepos);
+            console.log(JSON.stringify(newRepos));
           })
           .catch((error) => {
             console.error("Error getting starred repos:", error);
@@ -86,7 +103,39 @@ const Main = ({ user }) => {
     };
     fetchData();
   }, []);
-
+  useEffect(() => {
+    console.log(newRepos);
+    const getInfo = async () => {
+      try {
+        axios
+          .post(
+            "http://localhost:5000/gemini",
+            {
+              text: JSON.stringify(newRepos),
+              keywords: "repos related to python",
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            }
+          )
+          .then((response) => {
+            const curatedRepos = response.data.curated_repos;
+            console.log(JSON.stringify(curatedRepos));
+            console.log(response.data);
+            
+          })
+          .catch((error) => {
+            console.error("Error in gemini repos:", error);
+          });
+      } catch (error) {
+        console.error("Error getting starred repos:", error);
+      }
+    };
+    getInfo();
+  }, []);
   return (
     <div className="min-h-screen relative lg:pl-72">
       <AuroraBackground className="absolute inset-0 z-0" />
