@@ -5,7 +5,7 @@ import { FlipWords } from "../components/flip-words";
 import { Placeholder } from "../components/placeholder";
 import { motion } from "framer-motion";
 
-import { useEffect } from "react";
+import { useEffect  } from "react";
 import axios from "axios";
 import React, { useState } from "react";
 function extractRepoInfo(repos) {
@@ -23,13 +23,6 @@ function extractRepoInfo(repos) {
     stargazersCount: repo.stargazers_count,
   }));
 }
-const handleChange = (e) => {
-  console.log(e.target.value);
-};
-const onSubmit = (e) => {
-  e.preventDefault();
-  console.log("submitted");
-};
 
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
@@ -75,6 +68,38 @@ const Main = ({ user }) => {
     "I'm waiting",
   ];
   const [newRepos, setNewRepos] = useState([]);
+  const [keywords , setkeywords] = useState("");
+const handleChange = (e) => {
+  console.log(e.target.value);
+  setkeywords(e.target.value);
+};
+const fetchResponse = async ({keywords}) => {
+  try{
+    const geminiResponse = await axios.post(
+      "http://localhost:5000/gemini",
+      {
+        text: newRepos,
+        keywords: keywords,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    const curatedRepos = geminiResponse.data.curated_repos;
+    console.log(JSON.stringify(curatedRepos));
+  }catch (error) {
+    console.error("Error getting starred repos:", error);
+  }
+}
+const onSubmit = (e) => {
+  e.preventDefault();
+  console.log("submitted");
+  fetchResponse({keywords});
+};
+
   useEffect(() => {
     const accessToken = getCookie("accessToken");
     console.log(accessToken);
@@ -95,28 +120,16 @@ const Main = ({ user }) => {
         setNewRepos(newRepos);
         console.log(JSON.stringify(newRepos));
 
-        const geminiResponse = await axios.post(
-          "http://localhost:5000/gemini",
-          {
-            text: newRepos,
-            keywords: "repos related to python",
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        const curatedRepos = geminiResponse.data.curated_repos;
-        console.log(JSON.stringify(curatedRepos));
+        
+        
       } catch (error) {
         console.error("Error getting starred repos:", error);
       }
     };
+    
     fetchData();
   }, []);
-
+  
   return (
     <div className="min-h-screen relative lg:pl-72">
       <AuroraBackground className="absolute inset-0 z-0" />
@@ -196,7 +209,9 @@ export default function LandingPage() {
   return (
     <div>
       <SideBar user={user} />
+      
       <Main user={user} />
+      
     </div>
   );
 }
