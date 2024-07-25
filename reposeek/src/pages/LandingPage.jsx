@@ -17,6 +17,12 @@ const onSubmit = (e) => {
   console.log("submitted");
 };
 
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+  return null;
+};
 const Main = ({ user }) => {
   const words = [
     "website",
@@ -54,6 +60,32 @@ const Main = ({ user }) => {
     "I'm here",
     "I'm waiting",
   ];
+  useEffect(() => {
+    const accessToken = getCookie("accessToken");
+    console.log(accessToken);
+    if (!accessToken) {
+      window.location.href = "/login";
+    }
+    const fetchData = async () => {
+      try {
+        axios
+          .get("https://api.github.com/user/starred", {
+            headers: {
+              Authorization: `token ${accessToken}`,
+            },
+          })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error("Error getting starred repos:", error);
+          });
+      } catch (error) {
+        console.error("Error getting starred repos:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen relative lg:pl-72">
