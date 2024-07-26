@@ -41,7 +41,8 @@ class RepoInfo(BaseModel):
     fullName: str
     language: str | None
     url: str
-    stargazersCount: int   
+    stargazersCount: int
+ 
     
 class TextInput(BaseModel):
     text: List[RepoInfo]
@@ -153,13 +154,7 @@ async def analyze_text(input: TextInput = Body(...)):
         {repos_text}
 
         The developer is interested in: {input.keywords}. Could you recommend the best ones from this list that would be most helpful for me? I'd really appreciate it if you could explain why each recommendation is valuable and how it relates to my interests.Also, please provide a code snippet or example usage for each recommendation to help me understand how to use it effectively.
-        
-        Please help them by:
-        1. Recommending the most relevant repos from their starred list for this project.
-        2. Explaining how each recommended repo can be integrated into their project.
-        3. Providing a brief code example or implementation suggestion for each recommended repo.
-        4. Offering any additional advice or considerations for their project based on the available repos.
-
+      
         When you respond, please format your recommendations as a JSON array of objects. Each object should represent a recommended repo and include the following details:
         - greetings: Greet the user first by saying "Heyyy wassup, seeing that you finally decided to take a look at your starred repos, welp check these out!"
         - name: The repo's name

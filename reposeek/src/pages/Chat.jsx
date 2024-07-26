@@ -10,7 +10,6 @@ import { dotWave } from 'ldrs'
 dotWave.register()
 
 
-
 function extractRepoInfo(repos) {
   return repos.map((repo) => ({
     greetings: repo.greetings,
@@ -28,6 +27,20 @@ function extractRepoInfo(repos) {
     svn_url: repo.svn_url,
 
     stargazersCount: repo.stargazers_count,
+
+    forksCounts: repo.forks_count,
+
+    openIssuesCount: repo.open_issues_count,
+
+    topics: repo.topics,
+
+    updatedAt: repo.updated_at,
+
+    license: repo.license,
+
+    homepage: repo.homepage,
+
+    watchersCount: repo.watchers_count,
   }));
 }
 
@@ -108,14 +121,14 @@ const Chat = () => {
   return (
     <div className={`mb-6 flex ${isUser ? "justify-end" : "justify-start"}`}>
       {!isUser && (
-        <div className="w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center mr-4 flex-shrink-0">
-          <span className="text-white text-xs font-bold"></span>
+        <div className="w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center mr-4  flex-shrink-0">
+          <span className="text-white text-xs font-bold">AI</span>
         </div>
       )}
       <div
         className={`inline-block p-4 rounded-lg max-w-[80%] ${
           isUser
-            ? "bg-indigo-900 text-white"
+            ? "bg-transparent text-white"
             : message.type === "loading"
             ? "bg-transparent text-white"
             : message.type === "error"
@@ -128,8 +141,7 @@ const Chat = () => {
           <p className="text-lg">{message.content}</p>
         ) : message.type === "loading" ? (
           <div className="flex bg-transparent items-center">
-            
-            <l-dot-wave size="50" speed="1.4" color="gray"></l-dot-wave>
+            <l-dot-wave size="47" speed="1" color="black"></l-dot-wave>
           </div>
         ) : message.type === "error" ? (
           <p className="text-lg">{message.content}</p>
@@ -156,23 +168,21 @@ const Chat = () => {
                   </p>
                   <p>
                     <span className="font-semibold">Stars:</span>{" "}
-                    {repo.stargazersCount.toLocaleString()}
+                    {repo.stargazersCount}
                   </p>
                   <a
                     href={repo.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-300 hover:underline"
+                    className="text-blue-300 hover:underline block "
                   >
                     View on GitHub
                   </a>
                 </div>
-                <p className="text-base mb-3">{repo.explanation}</p>
-                <a className="font-semibold ">
-                  Here's a code snippet for you to understand the repo :{" "}
-                </a>
-                <pre className="bg-gray-800 text-white p-3 mt-2 rounded-md overflow-x-auto text-sm">
-                  <code> {repo.codeSnippet}</code>
+
+                <p className="text-base my-3">{repo.explanation}</p>
+                <pre className="bg-gray-800 text-white p-3 rounded-md overflow-x-auto text-sm">
+                  <code>{repo.codeSnippet}</code>
                 </pre>
               </div>
             ))}
@@ -180,7 +190,7 @@ const Chat = () => {
         )}
       </div>
       {isUser && (
-        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center ml-2 flex-shrink-0">
+        <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center mt-3 ml-2 flex-shrink-0">
           <span className="text-white text-xs font-bold">U</span>
         </div>
       )}

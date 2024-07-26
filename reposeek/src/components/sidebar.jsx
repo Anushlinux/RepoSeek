@@ -64,9 +64,9 @@ const loadingStates = [
   },
 ];
 
-export default function Example({user}) {
+export default function Example({ user = { login: '', avatar_url: '' } }) {
 
-  
+  console.log('User object', user);
   
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -218,14 +218,14 @@ export default function Example({user}) {
 
                     {/* The buttons are for demo only, remove it in your actual code ⬇️ */}
                     <button
-                        onClick={() => setLoading(true)}
-                        className="bg-transparent hover:bg-[grey]/60 text-white hover:text-black mx-auto text-sm md:text-base transition font-medium duration-200 h-10 mb-10 rounded-lg px-8 cursor-pointer"
-                        style={{
-                            boxShadow:
-                                "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
-                        }}
+                      onClick={() => setLoading(true)}
+                      className="bg-transparent hover:bg-[grey]/60 text-white hover:text-black mx-auto text-sm md:text-base transition font-medium duration-200 h-10 mb-10 rounded-lg px-8 cursor-pointer"
+                      style={{
+                        boxShadow:
+                          "0px -1px 0px 0px #ffffff40 inset, 0px 1px 0px 0px #ffffff40 inset",
+                      }}
                     >
-                        Why am I here?
+                      Why am I here?
                     </button>
 
                     {loading && (
@@ -244,12 +244,11 @@ export default function Example({user}) {
                   >
                     <img
                       className="h-16 rounded-lg w-16 bg-gray-800"
-                      src= {user.avatar_url}
-                      alt=""
+                      src={user.avatar_url || "default-avatar.png"}
+                      alt={user.login || "User"}
                     />
-                    <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true" className="px-4  text-lg">
-                      {user.login}
+                    <span aria-hidden="true" className="px-4 text-lg">
+                      {user.login || "Guest"}
                     </span>
                   </a>
                 </li>
