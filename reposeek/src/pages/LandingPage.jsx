@@ -69,10 +69,10 @@ const Main = ({ user }) => {
   ];
   const [newRepos, setNewRepos] = useState([]);
   const [keywords , setkeywords] = useState("");
-const handleChange = (e) => {
-  console.log(e.target.value);
-  setkeywords(e.target.value);
-};
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setkeywords(e.target.value);
+  };
 const fetchResponse = async ({keywords}) => {
   try{
     const geminiResponse = await axios.post(
@@ -119,9 +119,6 @@ const onSubmit = (e) => {
         const newRepos = extractRepoInfo(githubResponse.data);
         setNewRepos(newRepos);
         console.log(JSON.stringify(newRepos));
-
-        
-        
       } catch (error) {
         console.error("Error getting starred repos:", error);
       }

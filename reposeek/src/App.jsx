@@ -17,6 +17,8 @@ const getCookie = (name) => {
   return null;
 };
 
+import ChatPage from './pages/Chat';
+
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/api/github/callback" element={<Callback />} />
         <Route path="*" element={<h1>404 Page not found</h1>} />
+        <Route path="/chat" element={<ChatPage />} />
       </Routes>
     </Router>
   )

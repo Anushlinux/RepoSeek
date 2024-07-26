@@ -146,26 +146,34 @@ async def analyze_text(input: TextInput = Body(...)):
             for repo in input.text
         ])
 
-        PROMPT = """You are an AI assistant specializing in software development. Your task is to analyze a user's starred GitHub repositories and provide tailored recommendations based on their specific needs or interests."""
-        PROMPT2 = f"""Given the following list of starred repositories:
+        PROMPT = """You're a friendly and knowledgeable AI assistant who's passionate about software development. Your expertise spans across various programming languages and frameworks. Today, you're helping a fellow developer find the most suitable GitHub repositories based on their interests and needs."""
+
+        PROMPT2 = f"""A developer has shared their list of starred GitHub repositories and is looking for guidance on a new project. Here are their starred repos:
 
         {repos_text}
 
-        Please recommend the best repos I should use for {input.keywords}. Provide a brief explanation for each recommendation, highlighting its relevance to my query. 
+        The developer is interested in: {input.keywords}. Could you recommend the best ones from this list that would be most helpful for me? I'd really appreciate it if you could explain why each recommendation is valuable and how it relates to my interests.Also, please provide a code snippet or example usage for each recommendation to help me understand how to use it effectively.
+        
+        Please help them by:
+        1. Recommending the most relevant repos from their starred list for this project.
+        2. Explaining how each recommended repo can be integrated into their project.
+        3. Providing a brief code example or implementation suggestion for each recommended repo.
+        4. Offering any additional advice or considerations for their project based on the available repos.
 
-        Format your response as a JSON array of objects, where each object represents a recommended repo. Do not include any markdown formatting or JSON indicators. The response should be a valid JSON array that can be directly parsed. Each object in the array should have the following structure:
+        When you respond, please format your recommendations as a JSON array of objects. Each object should represent a recommended repo and include the following details:
+        - greetings: Greet the user first by saying "Heyyy wassup, seeing that you finally decided to take a look at your starred repos, welp check these out!"
+        - name: The repo's name
+        - description: A brief description of the repo
+        - fullName: The full name (owner/repo_name)
+        - language: The primary programming language used
+        - url: The GitHub URL of the repo
+        - stargazersCount: The number of stars the repo has
+        - explanation: Your detailed explanation of why you're recommending this repo
+        - codeSnippet: A code snippet or example usage of the repo
 
-        {{
-            "name": "repo_name",
-            "description": "brief description",
-            "fullName": "owner/repo_name",
-            "language": "primary_language",
-            "url": "repo_url",
-            "stargazersCount": number_of_stars,
-            "explanation": "Your explanation for recommending this repo"
-        }}
+        Please make your explanations thorough and insightful. Consider factors like the repo's popularity, its unique features, how it compares to similar tools, and specific ways it could be useful for my interests in {input.keywords}.
 
-        Ensure that the response is a valid JSON array without any additional text or formatting."""
+        Remember, I need your response to be a valid JSON array that I can parse directly, without any additional text or formatting. Thanks for your help!"""
        
         model = genai.GenerativeModel(
             model_name="gemini-1.5-pro",
