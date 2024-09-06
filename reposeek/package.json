@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^2.1.1",
     "@heroicons/react": "^2.1.4",
+    "@radix-ui/react-label": "^2.1.0",
     "@tabler/icons-react": "^3.9.0",
     "body-parser": "^1.20.2",
     "clsx": "^2.1.1",
